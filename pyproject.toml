@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novaos-agent-sdk"
+version = "0.0.1"
+description = "Python client library for connecting to and communicating with AI Agents that implement the Agent Communication Protocol (ACP)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "NovaOS Team"},
+]
+keywords = ["acp", "agent", "ai", "client", "sdk"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/OrbitronAI-Repo/novaos-agent-sdk-public"
+Repository = "https://github.com/OrbitronAI-Repo/novaos-agent-sdk-public"
+Issues = "https://github.com/OrbitronAI-Repo/novaos-agent-sdk-public/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["py.typed"]
