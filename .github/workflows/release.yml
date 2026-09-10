@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: read
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
@@ -35,3 +38,37 @@ jobs:
         with:
           packages-dir: dist/
           print-hash: true
+
+  post-publish-smoke:
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install the published version from PyPI
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          python -m venv v
+          for i in $(seq 1 10); do
+            if v/bin/pip install --no-cache-dir "novaos-agent-sdk==${VERSION}"; then
+              break
+            fi
+            if [ "$i" -eq 10 ]; then
+              echo "error: novaos-agent-sdk==${VERSION} did not become installable from PyPI" >&2
+              exit 1
+            fi
+            echo "novaos-agent-sdk==${VERSION} not yet available, retrying in 30s ($i/10)..."
+            sleep 30
+          done
+
+      - name: Verify the installed package
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          v/bin/python -c "
+          import novaos_client_sdk as s
+          assert s.__version__ == '${VERSION}', s.__version__
+          print('ok', s.__version__)
+          "
