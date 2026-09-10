@@ -1,0 +1,25 @@
+site_name: NovaOS Agent SDK (Python)
+site_description: Python SDK for building agents on the NovaOS platform
+site_url: https://orbitronai-repo.github.io/novaos-agent-sdk-public/
+repo_url: https://github.com/OrbitronAI-Repo/novaos-agent-sdk-public
+repo_name: OrbitronAI-Repo/novaos-agent-sdk-public
+
+docs_dir: docs/public
+
+theme:
+  name: material
+  features:
+    - navigation.top
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+
+strict: true
