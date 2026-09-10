@@ -1,0 +1,7 @@
+# This repository is a read-only release mirror (see PULL_REQUEST_TEMPLATE.md);
+# CODEOWNERS mainly documents who is notified about issues and the rare
+# reviewed PR (e.g. the first export, before the mirror push identity exists).
+#
+# TODO(CU-86eyvww0p): "sdk-maintainers" is a placeholder team slug — replace
+# with the decided maintainer team once named and created in the org.
+* @OrbitronAI-Repo/sdk-maintainers
